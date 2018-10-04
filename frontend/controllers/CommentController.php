@@ -67,20 +67,19 @@ class CommentController extends Controller
     {
         $model = new Comment();
         $model->text = Yii::$app->request->post('text');
-        $model->page_id = Yii::$app->request->post('page_id');
-
+        $model->page_id = Yii::$app->request->post('id');
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if ($model->validate() && $model->save()) {
                 $transaction->commit();
-                return $this->render('pages/_comments', [
-                    'comments' => Comment::findAll(['page_id' => Yii::$app->request->post('page_id')])
+                return $this->renderPartial('../pages/_comments', [
+                    'comments' => Comment::findAll(['page_id' => Yii::$app->request->post('id')])
                 ]);
             }
         } catch (Exception $e) {
             $transaction->rollBack();
-            return $this->render('pages/_comments', [
-                'comments' => Comment::findAll(['page_id' => Yii::$app->request->post('page_id')]),
+            return $this->renderPartial('../pages/_comments', [
+                'comments' => Comment::findAll(['page_id' => Yii::$app->request->post('id')]),
                 'error' => Yii::t('app', 'save_error_comment')
             ]);
         }
