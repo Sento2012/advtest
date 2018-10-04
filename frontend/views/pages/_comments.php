@@ -5,7 +5,7 @@ use yii\widgets\Pjax;
 
 ?>
 <h4>Список комментариев:</h4>
-<?php Pjax::begin(); ?>
+<?php Pjax::begin(['enablePushState' => false]); ?>
 <?php foreach ($comments as $comment) { ?>
     <?= $comment->text; ?><br>
 <?php } ?>
