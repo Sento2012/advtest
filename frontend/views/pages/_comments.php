@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 <?php } ?>
 <?= Html::beginForm(['comment/add'], 'post', ['data-pjax' => '', 'class' => 'form-inline']); ?>
 <?= Html::input('text', 'text', Yii::$app->request->post('string'), ['class' => 'form-control']) ?>
-<?= Html::hiddenInput('id', Yii::$app->request->get('id')) ?>
+<?= Html::hiddenInput('id', $model->id) ?>
 <?= Html::submitButton('Добавить комментарий', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
 <?= Html::endForm() ?>
 <?php Pjax::end(); ?>

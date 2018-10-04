@@ -73,6 +73,7 @@ class CommentController extends Controller
             if ($model->validate() && $model->save()) {
                 $transaction->commit();
                 return $this->renderPartial('../pages/_comments', [
+                    'model' => $model->page,
                     'comments' => Comment::findAll(['page_id' => Yii::$app->request->post('id')])
                 ]);
             }
